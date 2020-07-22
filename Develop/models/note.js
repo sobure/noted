@@ -4,10 +4,10 @@ class Note {
   getNotes() {
     return orm.selectAll("notes")
   }
-  addkNote(values) {
-    return orm.create("notes", ['note', 'bookId'], values)
+  addNote(values) {
+    return orm.create("notes", ['note'], values)
   }
-  deleteBookNote(value) {
+  deletekNote(value) {
     return orm.delete("notes", 'id', value)
   }
   
