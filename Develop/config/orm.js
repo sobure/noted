@@ -24,18 +24,6 @@ class ORM  {
     return questionMarks.join(', ');
   }
 
-  innerJoin(colsToSelect, tableOne, tableTwo, tableOneCol, tableTwoCol) {
-    const queryString = `SELECT ${this.printQuestionMarks(colsToSelect.length, 'cols')} FROM ?? INNER JOIN ?? ON ??.?? = ??.??`;
-
-    return this.connection.query(queryString, [...colsToSelect, tableOne, tableTwo, tableOne, tableOneCol, tableTwo, tableTwoCol])
-  }
-
-  innerJoinOne(colsToSelect, tableOne, tableTwo, tableOneCol, tableTwoCol, bookId){
-    const queryString = `SELECT ${this.printQuestionMarks(colsToSelect.length, 'cols')} FROM ?? INNER JOIN ?? ON ??.?? = ??.?? WHERE books.id=?`;
-
-    return this.connection.query(queryString, [...colsToSelect, tableOne, tableTwo, tableOne, tableOneCol, tableTwo, tableTwoCol, bookId])
-  }
-
   create(table, columns, values) {
     const queryString = `INSERT INTO ?? (${columns.join(', ')}) VALUES (${this.printQuestionMarks(values.length, 'vals')})`;
 
